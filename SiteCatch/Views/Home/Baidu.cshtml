@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Baidu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Common.SearchEngineInfo
+@using (Html.BeginForm("Baidu","Home", FormMethod.Post))
+{
+<fieldset>
+    <legend>Baidu搜索引擎查询</legend>
+    @Html.Label("站点URL")
+    <input id="SiteUrl" name="SiteUrl" type="text" placeholder="http://"><br />
+    <button type="submit" class="btn">Submit</button>
+</fieldset>
+}
+<table>
+    <tr>
+        <td>@(Model!=null?Model.SearchEngine.ToString():"")</td>
+        <td>@(Model != null ? Model.SiteUrl : "")</td>
+        <td>@(Model != null ? Model.Record : "")</td>
+        <td>@(Model != null ? Model.BackLink : "")</td>
+        <td>@(Model != null ? Model.PR : "")</td>
+    </tr>
+</table>
+
+
