@@ -21,10 +21,10 @@ namespace SiteCatch.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Baidu(string url)
+        public ActionResult Baidu(SearchEngineInfo model)
         {
-            searchEngineInfo = SiteHelper.SeoModel(searchEngineInfo.SiteUrl, EnumSearchEngine.Baidu);
-            return View();
+            searchEngineInfo = SiteHelper.SeoModel(model.SiteUrl, EnumSearchEngine.Baidu);
+            return View(searchEngineInfo);
         }
         public ActionResult Google()
         {

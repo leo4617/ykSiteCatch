@@ -9,49 +9,76 @@ namespace Common
     {
         private EnumSearchEngine _SearchEngine;
         protected string _SiteUrl;
+        private string _Title;
+        private string _Keywords;
+        private string _Description;
         private string _Record;
         private string _BackLink;
         private string _PR;
-       /// <summary>
-       ///  搜索引擎类型
-       /// </summary>       
-       public EnumSearchEngine SearchEngine
-       {
-           get { return _SearchEngine; }
-           set { _SearchEngine = value; }
-       }             
-       /// <summary>
-       ///  站点地址
-       /// </summary>       
-       public string SiteUrl
-       {
-           get { return _SiteUrl; }
-           set { _SiteUrl = value; }
-       }
-       /// <summary>
-       ///  收录
-       /// </summary>       
-       public string Record
-       {
-           get { return _Record; }
-           set { _Record = value; }
-       }             
-       /// <summary>
-       ///  反向链接
-       /// </summary>
-       public string BackLink
-       {
-           get { return _BackLink; }
-           set { _BackLink = value; }
-       }       
-       /// <summary>
-       ///  PR值
-       /// </summary>
-       public string PR
-       {
-           get { return _PR; }
-           set { _PR = value; }
-       }
+        /// <summary>
+        ///  搜索引擎类型
+        /// </summary>       
+        public EnumSearchEngine SearchEngine
+        {
+            get { return _SearchEngine; }
+            set { _SearchEngine = value; }
+        }
+        /// <summary>
+        ///  站点地址
+        /// </summary>       
+        public string SiteUrl
+        {
+            get { return _SiteUrl; }
+            set { _SiteUrl = value; }
+        }
+        /// <summary>
+        /// 页面标题
+        /// </summary>
+        public string Title
+        {
+            get { return _Title; }
+            set { _Title = value; }
+        }
+        /// <summary>
+        /// 页面关键字
+        /// </summary>
+        public string Keywords
+        {
+            get { return _Keywords; }
+            set { _Keywords = value; }
+        }
+        /// <summary>
+        /// 页面描述
+        /// </summary>
+        public string Description
+        {
+            get { return _Description; }
+            set { _Description = value; }
+        }
+        /// <summary>
+        ///  收录
+        /// </summary>       
+        public string Record
+        {
+            get { return _Record; }
+            set { _Record = value; }
+        }
+        /// <summary>
+        ///  反向链接
+        /// </summary>
+        public string BackLink
+        {
+            get { return _BackLink; }
+            set { _BackLink = value; }
+        }
+        /// <summary>
+        ///  PR值
+        /// </summary>
+        public string PR
+        {
+            get { return _PR; }
+            set { _PR = value; }
+        }
     }
 
     /// <summary>

@@ -7,12 +7,16 @@
 {
 <fieldset>
     <legend>Baidu搜索引擎查询</legend>
-    @Html.Label("站点URL")
-    <input id="SiteUrl" name="SiteUrl" type="text" placeholder="http://"><br />
+    <label>站点URL</label>
+    @Html.TextBoxFor(m => m.SiteUrl, new { placeholder="http://" })<br />
     <button type="submit" class="btn">Submit</button>
 </fieldset>
 }
-<table>
+<table class="table table-bordered">
+    <tr><td>标题</td><td colspan="5">@(Model != null ? Model.Title : "")</td></tr>
+    <tr><td>关键字</td><td colspan="5">@(Model != null ? Model.Keywords : "")</td></tr>
+    <tr><td>描述</td><td colspan="5">@(Model != null ? Model.Description : "")</td></tr>
+    <tr><td>搜索引擎</td><td>网站URL</td><td>收录数</td><td>反链数</td><td>PR值</td></tr>
     <tr>
         <td>@(Model!=null?Model.SearchEngine.ToString():"")</td>
         <td>@(Model != null ? Model.SiteUrl : "")</td>

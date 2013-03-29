@@ -6,3 +6,11 @@ J:\开发文档\SiteCatch\SiteCatch\obj\Debug\SiteCatch.pdb
 J:\开发文档\SiteCatch\SiteCatch\bin\Common.dll
 J:\开发文档\SiteCatch\SiteCatch\bin\PRCrack.dll
 J:\开发文档\SiteCatch\SiteCatch\bin\Common.pdb
+I:\ykSiteCatch\SiteCatch\bin\SiteCatch.dll
+I:\ykSiteCatch\SiteCatch\bin\SiteCatch.pdb
+I:\ykSiteCatch\SiteCatch\bin\Common.dll
+I:\ykSiteCatch\SiteCatch\bin\PRCrack.dll
+I:\ykSiteCatch\SiteCatch\bin\Common.pdb
+I:\ykSiteCatch\SiteCatch\obj\Debug\ResolveAssemblyReference.cache
+I:\ykSiteCatch\SiteCatch\obj\Debug\SiteCatch.dll
+I:\ykSiteCatch\SiteCatch\obj\Debug\SiteCatch.pdb

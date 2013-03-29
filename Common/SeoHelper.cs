@@ -33,6 +33,20 @@ namespace Common
             }
             return reg.Match(html).Groups["getcontent"].Value;
         }
+        public static string[] GetMeta(string html)
+        {
+            string[] meta=new string[3];
+            string regextitle = @"(?<=<title.*>)([\s\S]*)(?=</title>)";
+            string regkeyword = "(?<=content=\")[^\"]*(?:(?<=(.*keywords.*)|(?=(.*keywords.*))";
+            string regdesc = "(?<=content=\")[^\"]*(?:(?<=(.*description.*)|(?=(.*description.*))";
+            Regex reg = new Regex(regextitle, RegexOptions.IgnoreCase);
+            meta[0] = reg.Match(html).Value.Trim();
+            reg = new Regex(regkeyword, RegexOptions.IgnoreCase);
+            meta[1] = reg.Match(html).Value.Trim();
+            reg = new Regex(regdesc, RegexOptions.IgnoreCase);
+            meta[2] = reg.Match(html).Value.Trim();
+            return meta;
+        }       
         /// <summary>
         ///  正则表达式信息设置
         /// </summary>
@@ -54,8 +68,8 @@ namespace Common
                         Model.siteUrl = "http://www.google.com.hk/search?hl=zh-CN&source=hp&q=link:" + Url;
                     break;
                 case EnumSearchEngine.Baidu:
-                    Model.regStart = "找到相关网页约";
-                    Model.regEnd = "篇";
+                    Model.regStart = "找到相关结果";
+                    Model.regEnd = "个";
                     Model.encoding = "gb2312";
                     if (isRecord)
                         Model.siteUrl = "http://www.baidu.com/s?wd=site%3A" + Url;

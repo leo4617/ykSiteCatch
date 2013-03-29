@@ -4,3 +4,9 @@ J:\开发文档\SiteCatch\Common\bin\Debug\Common.pdb
 J:\开发文档\SiteCatch\Common\obj\Debug\Common.dll
 J:\开发文档\SiteCatch\Common\obj\Debug\Common.pdb
 J:\开发文档\SiteCatch\Common\bin\Debug\PRCrack.dll
+I:\ykSiteCatch\Common\bin\Debug\Common.dll
+I:\ykSiteCatch\Common\bin\Debug\Common.pdb
+I:\ykSiteCatch\Common\bin\Debug\PRCrack.dll
+I:\ykSiteCatch\Common\obj\Debug\ResolveAssemblyReference.cache
+I:\ykSiteCatch\Common\obj\Debug\Common.dll
+I:\ykSiteCatch\Common\obj\Debug\Common.pdb

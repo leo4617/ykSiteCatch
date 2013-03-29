@@ -15,7 +15,7 @@ namespace Common
         public static string GetRecordInfo(EnumSearchEngine _engine, string Url)
         {
             CutRegexInfo model = SeoHelper.GetCutRegexInfo(_engine, Url, true);
-            string Html = HtmlCatch.GetHTML(model.siteUrl, model.encoding);
+            string Html = HtmlCatch.GetHtml(model.siteUrl, model.encoding);
             string Result = SeoHelper.GetMetaString(Html, model.regStart, model.regEnd, true);
             return HtmlCatch.NoHTML(Result);
         }
@@ -25,9 +25,17 @@ namespace Common
         public static string GetBackLinkInfo(EnumSearchEngine _engine, string Url)
         {
             CutRegexInfo model = SeoHelper.GetCutRegexInfo(_engine, Url, false);
-            string Html = HtmlCatch.GetHTML(model.siteUrl, model.encoding);
+            string Html = HtmlCatch.GetHtml(model.siteUrl, model.encoding);
             string Result = SeoHelper.GetMetaString(Html, model.regStart, model.regEnd, true);
             return HtmlCatch.NoHTML(Result);
+        }
+        /// <summary>
+        /// 获取Title,Keywords,Description
+        /// </summary>
+        public static string[] GetMeta(string Url)
+        {
+            string Html = HtmlCatch.GetHtml("http://"+Url, "utf-8");
+            return SeoHelper.GetMeta(Html);
         }
         /// <summary>
         ///  获取某站点关键字在某搜索引擎的排名
@@ -45,7 +53,7 @@ namespace Common
             {
                 case EnumSearchEngine.Baidu:
                     searchUrl = "http://www.baidu.com/s?tn=baiduadv&rn=100&q1=";
-                    Html = HtmlCatch.GetHTML(searchUrl + HttpUtility.UrlEncode(KeyWord, System.Text.Encoding.GetEncoding("gb2312")), "gb2312");
+                    Html = HtmlCatch.GetHtml(searchUrl + HttpUtility.UrlEncode(KeyWord, System.Text.Encoding.GetEncoding("gb2312")), "gb2312");
                     // Url = Url.Replace("\\", "");
                     resultText = SeoHelper.GetMetaString(Html, "<div id=\"wrapper\">", "<font color=\"#008000\">" + Url + "", true);
                     reg = new Regex("<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\"");
@@ -88,11 +96,16 @@ namespace Common
         /// </summary>
         public static SearchEngineInfo SeoModel(string Url, EnumSearchEngine _engine)
         {
+            string[] meta = GetMeta(Url);
             SearchEngineInfo Model = new SearchEngineInfo();
             Model.SearchEngine = _engine;
             Model.SiteUrl = Url;
-            Model.Record = GetRecordInfo(_engine, Url);
-            Model.BackLink = GetBackLinkInfo(_engine, Url);
+
+            Model.Title = meta[0];
+            Model.Keywords = meta[1];
+            Model.Description = meta[2];
+            Model.Record = GetRecordInfo(_engine, Url).Replace("数","").Replace("约","") ;
+            Model.BackLink = GetBackLinkInfo(_engine, Url).Replace("数", "").Replace("约", "");
             if (_engine == EnumSearchEngine.Google)
             {
                 Model.PR = PRCrack.PageRank.CheckPR("http://" + Url);
@@ -126,8 +139,8 @@ namespace Common
             SiteSeoInfo Model = new SiteSeoInfo();
             Model.SearchEngine = _engine;
             Model.SiteUrl = Url;
-            Model.Record = GetRecordInfo(_engine, Url);
-            Model.BackLink = GetBackLinkInfo(_engine, Url);
+            Model.Record = GetRecordInfo(_engine, Url).Replace("数", "").Replace("约", "");
+            Model.BackLink = GetBackLinkInfo(_engine, Url).Replace("数", "").Replace("约", "");
             if (_engine == EnumSearchEngine.Google)
             {
                 Model.PR = PRCrack.PageRank.CheckPR("http://" + Url);
