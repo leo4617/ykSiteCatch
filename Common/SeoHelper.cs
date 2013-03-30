@@ -31,20 +31,21 @@ namespace Common
             {
                 reg = new Regex(regString);
             }
-            return reg.Match(html).Groups["getcontent"].Value;
+            string temp = reg.Match(html).Groups["getcontent"].Value;
+            return temp == "" ? "0" : temp;
         }
         public static string[] GetMeta(string html)
         {
             string[] meta=new string[3];
             string regextitle = @"(?<=<title.*>)([\s\S]*)(?=</title>)";
-            string regkeyword = "(?<=content=\")[^\"]*(?:(?<=(.*keywords.*)|(?=(.*keywords.*))";
-            string regdesc = "(?<=content=\")[^\"]*(?:(?<=(.*description.*)|(?=(.*description.*))";
+            string regkeyword = "<meta" + @"\s+" + "name=\"keywords\"" + @"\s+" + "content=\"(?<content>[^\"" + @"\<\>" + "]*)\"";
+            string regdesc = "<meta" + @"\s+" + "name=\"description\"" + @"\s+" + "content=\"(?<content>[^\"" + @"\<\>" + "]*)\"";
             Regex reg = new Regex(regextitle, RegexOptions.IgnoreCase);
             meta[0] = reg.Match(html).Value.Trim();
             reg = new Regex(regkeyword, RegexOptions.IgnoreCase);
-            meta[1] = reg.Match(html).Value.Trim();
+            meta[1] = reg.Match(html).Groups[1].Value.Trim();
             reg = new Regex(regdesc, RegexOptions.IgnoreCase);
-            meta[2] = reg.Match(html).Value.Trim();
+            meta[2] = reg.Match(html).Groups[1].Value.Trim();
             return meta;
         }       
         /// <summary>
@@ -59,7 +60,7 @@ namespace Common
             switch (_engine)
             {
                 case EnumSearchEngine.Google:
-                    Model.regStart = "获得约";
+                    Model.regStart = "找到";
                     Model.regEnd = "条结果";
                     Model.encoding = "gb2312";
                     if (isRecord)
@@ -77,7 +78,7 @@ namespace Common
                         Model.siteUrl = "http://www.baidu.com/s?cl=3&wd=domain:" + Url;
                     break;
                 case EnumSearchEngine.Yahoo:
-                    Model.regStart = "找到相关网页约";
+                    Model.regStart = "找到相关网页";
                     Model.regEnd = "条";
                     Model.encoding = "utf-8";                    
                     if (isRecord)
@@ -95,7 +96,7 @@ namespace Common
                         Model.siteUrl = "http://www.sogou.com/web?query=link:" + Url;
                     break;
                 case EnumSearchEngine.Soso:
-                    Model.regStart = "搜索到约";
+                    Model.regStart = "搜索到";
                     Model.regEnd = "项结果";
                     Model.encoding = "gb2312";                    
                     if (isRecord)
@@ -113,7 +114,7 @@ namespace Common
                         Model.siteUrl = "http://cn.bing.com/search?form=QBLH&filt=all&q=link:" + Url;
                     break;
                 case EnumSearchEngine.Youdao:
-                    Model.regStart = "共约";
+                    Model.regStart = "共";
                     Model.regEnd = "条结果";
                     Model.encoding = "utf-8";                    
                     if (isRecord)

@@ -2,6 +2,27 @@
     ViewBag.Title = "Yahoo";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Yahoo</h2>
+@model Common.SearchEngineInfo
+@using (Html.BeginForm("Yahoo", "Home", FormMethod.Post))
+{
+<fieldset>
+    <legend>Yahoo搜索引擎查询</legend>
+    <label>站点URL</label>
+    @Html.TextBoxFor(m => m.SiteUrl, new { placeholder="www.example.com" })<br />
+    <button type="submit" class="btn">Submit</button>
+</fieldset>
+}
+<table class="table table-bordered">
+    <tr><td>标题</td><td colspan="5">@(Model != null ? Model.Title : "")</td></tr>
+    <tr><td>关键字</td><td colspan="5">@(Model != null ? Model.Keywords : "")</td></tr>
+    <tr><td>描述</td><td colspan="5">@(Model != null ? Model.Description : "")</td></tr>
+    <tr><td>搜索引擎</td><td>网站URL</td><td>收录数</td><td>反链数</td><td>PR值</td></tr>
+    <tr>
+        <td>@(Model!=null?Model.SearchEngine.ToString():"")</td>
+        <td>@(Model != null ? Model.SiteUrl : "")</td>
+        <td>@(Model != null ? Model.Record : "")</td>
+        <td>@(Model != null ? Model.BackLink : "")</td>
+        <td>@(Model != null ? Model.PR : "")</td>
+    </tr>
+</table>
 
